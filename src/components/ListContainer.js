@@ -1,37 +1,46 @@
 import React, { useState } from "react";
 import List from "./List";
+import AddName from "./AddName";
 
-// function component === "stateless"
-
-// RULES OF HOOKS:
-// Only called within a function component
-// Only called at the top level of that component
-// Cannot be within a conditional
-
-// ***** #1 --> import useState - Destructure the useState from react, as it is a named export
+// #1 Create AddName comp (go there for more)
+// #2 Import AddName!
 
 const ListContainer = () => {
-  // ***** #3 --> Create an array guest list
   let guestVIPS = ["Rick Sanchez", "Morty Smith", "Summer Smith", "Mr. Nimbus"];
 
-  // ***** #4 --> create useState
-  // useState accepts an initial state and returns two values: -current state -function that updates state
-  // const [state, setState] = useState(initialState)
   const [guests, setGuests] = useState(guestVIPS);
-  // ***** #5 console.log the guests to see in console.
-  console.log(guests);
+
+  // #5 Create the bucket!
+  // #8 pass in e and inputValue
+  // #10 pass in the resetInput function
+  const handlSubmit = (e, inputValue, resetInput) => {
+    // #6 log the bucket, then comment out, go back to the child!
+    // console.log('Bucket!');
+    e.preventDefault();
+    // #9 log input to test, then comment out
+    // console.log("new input", inputValue);
+    // #10 setGuests: pass in old guests with new inputValue
+    // go back to child to create reset function
+    setGuests([...guests, inputValue]);
+    // #11 trigger resetInput to reset the input value
+    resetInput();
+  };
 
   return (
     <div className="list-container">
       <div>
         <h1 className="header">Rick and Morty Party List</h1>
       </div>
+      {/* #3 Add AddName here! */}
+      {/* #4 Think about the bucket! */}
+      <div>
+        {/* #7 Send the bucket to the child - see child to continue! */}
+        <AddName onSubmitHandler={handlSubmit} />
+      </div>
       <div>
         <h3>List of those attending</h3>
-        {/* ***** #6 map over the guests to retrieve name and number */}
-        {/* pass over to List component as props */}
         {guests.map((guest, index) => (
-          <List key={index} name={guest.name} number={index} />
+          <List key={index} name={guest} number={index} />
         ))}
       </div>
     </div>
