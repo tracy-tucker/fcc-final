@@ -48,3 +48,9 @@ const ListContainer = () => {
 };
 
 export default ListContainer;
+
+// SIDE NOTE: When the user refreshes the browser, the state will be lost
+// The only way to save state is via local storage,
+// or using an extension, like Redux with redux-persist that will
+// persist the state to storage.
+// Or, persist state into local storage using useEffect
