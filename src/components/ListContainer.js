@@ -31,7 +31,7 @@ const ListContainer = () => {
         {/* ***** #6 map over the guests to retrieve name and number */}
         {/* pass over to List component as props */}
         {guests.map((guest, index) => (
-          <List key={index} name={guest.name} number={index} />
+          <List key={index} name={guest} number={index} />
         ))}
       </div>
     </div>
