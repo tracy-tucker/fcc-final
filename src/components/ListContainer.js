@@ -2,27 +2,14 @@ import React, { useState } from "react";
 import List from "./List";
 import AddName from "./AddName";
 
-// #1 Create AddName comp (go there for more)
-// #2 Import AddName!
-
 const ListContainer = () => {
   let guestVIPS = ["Rick Sanchez", "Morty Smith", "Summer Smith", "Mr. Nimbus"];
 
   const [guests, setGuests] = useState(guestVIPS);
 
-  // #5 Create the bucket!
-  // #8 pass in e and inputValue
-  // #10 pass in the resetInput function
   const handlSubmit = (e, inputValue, resetInput) => {
-    // #6 log the bucket, then comment out, go back to the child!
-    // console.log('Bucket!');
     e.preventDefault();
-    // #9 log input to test, then comment out
-    // console.log("new input", inputValue);
-    // #10 setGuests: pass in old guests with new inputValue
-    // go back to child to create reset function
     setGuests([...guests, inputValue]);
-    // #11 trigger resetInput to reset the input value
     resetInput();
   };
 
@@ -31,10 +18,7 @@ const ListContainer = () => {
       <div>
         <h1 className="header">Rick and Morty Party List</h1>
       </div>
-      {/* #3 Add AddName here! */}
-      {/* #4 Think about the bucket! */}
       <div>
-        {/* #7 Send the bucket to the child - see child to continue! */}
         <AddName onSubmitHandler={handlSubmit} />
       </div>
       <div>
