@@ -4,7 +4,7 @@ import React from "react";
 const PartyVip = ({ name, image }) => {
   // #2 console.log the props to see result, then comment out
   // console.log("name", name);
-  // #3
+  // #3 render out the image and name after logging.
   return (
     <div>
       <img src={image} alt={name} />
