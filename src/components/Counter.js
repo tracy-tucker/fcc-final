@@ -65,3 +65,6 @@ const Counter = () => {
 };
 
 export default Counter;
+
+// Additional notes for troubleshooting
+// https://beta.reactjs.org/reference/react/useState#troubleshooting
