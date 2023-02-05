@@ -4,7 +4,9 @@ import AddName from "./AddName";
 import PartyVip from "./PartyVip";
 
 // useEffect - allows you to perform side effects in your component
-// IE: fetching data, directly updating the DOM, timers, event listeners, etc.
+// IE: fetching data, trigger animation, timers, event listeners, etc.
+// These happen at the end of the rendering process, which is great when synchronizing with a third-party library.
+// It is "stepping out" of your React code to synchronize with some external system.
 // It accepts 2 arguments: function (required) and dependency (optional)
 // No dependency: useEffect runs on every render
 // [] dependency: useEffect runs only on first render
@@ -57,14 +59,23 @@ const ListContainer = () => {
       </div>
       {/* #8 Add PartyVip here. */}
       {/* #9 map over characters and pass name and image as props */}
-      <div>
-        {characters.map((character) => (
-          <PartyVip
-            key={character.id}
-            name={character.name}
-            image={character.image}
-          />
-        ))}
+      {/* Add some styling! So this looks better */}
+      {/* Go to PartyVip to finish setting up characters */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+        }}
+      >
+        {characters &&
+          characters.map((character) => (
+            <PartyVip
+              key={character.id}
+              name={character.name}
+              image={character.image}
+            />
+          ))}
       </div>
     </div>
   );
