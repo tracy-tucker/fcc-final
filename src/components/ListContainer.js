@@ -54,3 +54,6 @@ export default ListContainer;
 // or using an extension, like Redux with redux-persist that will
 // persist the state to storage.
 // Or, persist state into local storage using useEffect
+
+// SIDE NOTE: useState can only be called at the top level of your component.
+// You can't call it inside loops or conditions.
