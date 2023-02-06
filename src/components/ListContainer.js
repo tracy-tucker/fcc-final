@@ -1,25 +1,39 @@
-import React, { useState } from "react";
+// #1 install and import Axios
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import List from "./List";
-
-// function component === "stateless"
-
-// RULES OF HOOKS:
-// Only called within a function component
-// Only called at the top level of that component
-// Cannot be within a conditional
-
-// ***** #1 --> import useState - Destructure the useState from react, as it is a named export
+import AddName from "./AddName";
+import PartyVip from "./PartyVip";
 
 const ListContainer = () => {
-  // ***** #3 --> Create an array guest list
   let guestVIPS = ["Rick Sanchez", "Morty Smith", "Summer Smith", "Mr. Nimbus"];
 
-  // ***** #4 --> create useState
-  // useState accepts an initial state and returns two values: -current state -function that updates state
-  // const [state, setState] = useState(initialState)
   const [guests, setGuests] = useState(guestVIPS);
-  // ***** #5 console.log the guests to see in console.
-  console.log(guests);
+  // #4 create state for characters
+  const [characters, setCharacters] = useState([]);
+
+  // #2 create useEffect to fetch characters
+  useEffect(() => {
+    const fetchData = async () => {
+      const results = await axios.get(
+        "https://rickandmortyapi.com/api/character?count=20"
+      );
+      // #3 log results to see in console. Then comment out
+      // console.log("results", results.data);
+      setCharacters(results.data.results);
+      console.log("results", results.data.results); // run to SHOW ERROR! No dependency present.
+    };
+
+    fetchData();
+
+    // });
+  }, []); // #4 Correct the infinity loop by passing an empty dependency.
+
+  const handlSubmit = (e, inputValue, resetInput) => {
+    e.preventDefault();
+    setGuests([...guests, inputValue]);
+    resetInput();
+  };
 
   return (
     <div className="list-container">
@@ -27,12 +41,34 @@ const ListContainer = () => {
         <h1 className="header">Rick and Morty Party List</h1>
       </div>
       <div>
+        <AddName onSubmitHandler={handlSubmit} />
+      </div>
+      <div>
         <h3>List of those attending</h3>
-        {/* ***** #6 map over the guests to retrieve name and number */}
-        {/* pass over to List component as props */}
         {guests.map((guest, index) => (
           <List key={index} name={guest} number={index} />
         ))}
+      </div>
+      <div>
+        <h3>Top 20 VIPS</h3>
+      </div>
+      {/* #7 add some styling! */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+        }}
+      >
+        {/* #6 Create PartyVips comp and map over characters to pass as props */}
+        {characters &&
+          characters.map((character) => (
+            <PartyVip
+              key={character.id}
+              name={character.name}
+              image={character.image}
+            />
+          ))}
       </div>
     </div>
   );
