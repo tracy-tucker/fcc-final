@@ -9,7 +9,7 @@ const ListContainer = () => {
   let guestVIPS = ["Rick Sanchez", "Morty Smith", "Summer Smith", "Mr. Nimbus"];
 
   const [guests, setGuests] = useState(guestVIPS);
-  // #4 create state for characters
+  // #4 create state for third-party characters
   const [characters, setCharacters] = useState([]);
 
   // #2 create useEffect to fetch characters
