@@ -13,7 +13,7 @@ const ListContainer = () => {
   // #5 Create the bucket!
   // #8 pass in e and inputValue
   // #10 pass in the resetInput function
-  const handlSubmit = (e, inputValue, resetInput) => {
+  const handleSubmit = (e, inputValue, resetInput) => {
     // #6 log the bucket, then comment out, go back to the child!
     // console.log('Bucket!');
     e.preventDefault();
@@ -27,15 +27,15 @@ const ListContainer = () => {
   };
 
   return (
-    <div className="list-container">
+    <div>
       <div>
-        <h1 className="header">Rick and Morty Party List</h1>
+        <h1>Rick and Morty Party List</h1>
       </div>
       {/* #3 Add AddName here! */}
       {/* #4 Think about the bucket! */}
       <div>
         {/* #7 Send the bucket to the child - see child to continue! */}
-        <AddName onSubmitHandler={handlSubmit} />
+        <AddName onSubmitHandler={handleSubmit} />
       </div>
       <div>
         <h3>List of those attending</h3>
